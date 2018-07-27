@@ -1,11 +1,16 @@
 //exemplo janela.cpp
 //para compilar: g++ -o janela janela.cpp -lSDL2
+#include <cstdio>
 #include <SDL2/SDL.h>
 
 int main(int argc, char* argv[])
 {
   // Inicia o SDL, nesse caso inicia o sistema de vídeo
-  SDL_Init(SDL_INIT_VIDEO);
+  if (SDL_Init(SDL_INIT_VIDEO) < 0)
+  {
+    printf("Erro: %s\n", SDL_GetError());
+    return 1;
+  }
 
   // declara um ponteiro de janela
   SDL_Window *janela;
@@ -13,6 +18,13 @@ int main(int argc, char* argv[])
   janela = SDL_CreateWindow("Janela SDL2",10,20, 640, 480, SDL_WINDOW_SHOWN);
   //poderia criar uma janela com OpenGL:
   //janela = SDL_CreateWindow("Janela SDL2",10,20, 640, 480, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+
+  //verifica se deu erro na criação da janela
+  if (janela == NULL)
+  {
+    printf("Erro: %s\n", SDL_GetError());
+    return 1;
+  }
 
   //nessa parte viria o loop principal e processamento de eventos
   // mas aqui vamos esperar 3000 milissegundos, ou 3 segundos
