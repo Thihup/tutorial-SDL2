@@ -1,4 +1,5 @@
 // compile o exemplo com: g++ -o sdl_init sdl_init.cpp -lSDL2
+#include <cstdio>
 #include <SDL2/SDL.h>
 
 int main (int argc, char **argv)
